@@ -37,7 +37,8 @@ Important points:
 - No free lines in the code
 - `command` can't be added to the widget properties (must be added afterwards in the program code)
 - Use `{3}` to declare a maximum number of Columns for a parent-Widget (grid-geometry manager will be used inside that widget)
-    - Lines without these brackets will use the pack-geometry manager to place child widgets
+    - Lines without these brackets will use the pack-geometry manager to place child widgets		
+- Use `#` to comment out the line from this point
 
 Example:
 - General:

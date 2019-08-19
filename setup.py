@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="simpleTk",
-    version="0.2.1",
+    version="0.2.2",
     author="Pascal Fabiano",
     author_email="pascal.fabiano99@gmail.com",
     description="A package to create simple Tkinter-GUIs using a seperate textfile",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="",
+    url="https://github.com/pascalliano/SimpleTk",
     packages=["SimpleTk"],
     classifiers=[
         "Programming Language :: Python :: 3",
