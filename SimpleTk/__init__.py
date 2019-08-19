@@ -14,16 +14,20 @@ class SimpleTk:
         self.properties = {}
         self.widgets = {}
         self.styles = {}
+        self.commands = []
 
         for i in self.data:
             i = i[0]
-            if i.split(":")[0] != "Style":
+            if i.split(":")[0] != "Style" and i.strip()[0] != ">":
                 self.parents[i.split(":")[-1].split("(")[0]] = i.split("\t")[-1].split(":")[0]
                 self.indents[i.split(":")[-1].split("(")[0]] = i.count("\t")
                 self.properties[i.split(":")[-1].split("(")[0]] = i.split("(")[-1].split(")")[0]
                 self.columns[i.split(":")[-1].split("(")[0]] = int(i.split("{")[-1].split("}")[0]) if "{" in i else 0
-            else:
+            elif i.split(":")[0] == "Style" and i.strip()[0] != ">":
                 self.styles[i.split(":")[-1].split("(")[0]] = i.split("(")[-1].split(")")[0]
+            elif ">" in i:
+                self.commands.append(i.split(">")[-1].strip())
+
 
         indent_keys = list(self.indents.keys())
         indent_keys.reverse()
@@ -65,6 +69,9 @@ class SimpleTk:
             exec(f"self.{i} = {i}")
             root.update()
 
+        for i in self.commands:
+            exec(i)
+
 if not os.path.isfile("gui.stk"):
     with open("gui.stk", "w") as f:
         f.write("""# SimpleTk GUI-File
@@ -73,6 +80,7 @@ if not os.path.isfile("gui.stk"):
 Frame: fr1(bg = "white")
 \tLabelFrame: lf1(text = "SimpleTk")
 \t\tLabel: l1(text = "My..first..SimpleTk..GUI", bg = "white")
+
 \tLabelFrame: lf2(text = "This..is..a..LabelFrame"){2}
 \t\tButton: b1(text = "This..is..a..Button", bg = "gold")
 \t\tEntry: e1()

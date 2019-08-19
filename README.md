@@ -38,6 +38,7 @@ Important points:
 - Use `{3}` to declare a maximum number of Columns for a parent-Widget (grid-geometry manager will be used inside that widget)
     - Lines without these brackets will use the pack-geometry manager to place child widgets		
 - Use `..` to type spaces in string arguments _(a better solution is in work)_
+- With `>` you can use this line to tyoe pure python code (e.g. to call methods on a widget)
 - Use `#` to comment out the line from this point
 
 Example:
@@ -88,6 +89,10 @@ lf2.grid(row = 1, column = 0, padx = 5, pady = 5, sticky = N+S+E+W)
 
 label2 = Label(lf2, text = "Footer", bg = "lightblue")    
 label2.pack(padx = 5, pady = 5, expand = True, fill = BOTH)
+
+cb1 = ttk.Combobox(lf2)
+cb1.pack(padx = 5, pady = 5, expand = True, fill = BOTH)
+cb1.set("Selection")
 ```
 
 SimpleTk:
@@ -97,9 +102,12 @@ Style: LabelFrame(bg = "gold")
 
 Frame: frame1 (bg = "white") {1}      
     LabelFrame: lf1 (text = "Header") {2}    
-        Label: label1 (text = "My first GUI")     
-        Button: button1 (text = "This is a Button")  
+        Label: label1 (text = "My..first..GUI")     
+        Button: button1 (text = "Thi..i..a..Button")  
         Entry: entry1 (bg = "white")        
     LabelFrame: lf2 (text = "Footer")    
         Label: label2 (text = "Footer")
+        ttk.Combobox: cb1 ()
+
+> cb1.set("Selection")
 ```
