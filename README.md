@@ -9,20 +9,20 @@ to a tkinter GUI (just like Kivy).
 ##### Implementation
 
 ###### Import
-```
+```python
 from tkinter import * 
 from SimpleTk import SimpleTk
 ```
 
 ###### Initialisation        
-```
+```python
 root = Tk()
-stk = SimpleTk(root, "gui/gui.txt")
+stk = SimpleTk(root, "project/testGUI.stk") # "gui.stk" is the standard value 
 root.mainloop()
 ```
 
 ###### Changing Widget Properties
-```
+```python
 stk.buttonName1["text"] = "I'm a button"
 stk.frameName1.bind("<Button-1>", lambda e: print("Click Event"))
 ```
@@ -34,10 +34,10 @@ The current version is still sensitive to errors.
 Important points:
 - use `tab` to indent child-widgets
 - No `tabs` at the end or middle of a line
-- No free lines in the code
 - `command` can't be added to the widget properties (must be added afterwards in the program code)
 - Use `{3}` to declare a maximum number of Columns for a parent-Widget (grid-geometry manager will be used inside that widget)
     - Lines without these brackets will use the pack-geometry manager to place child widgets		
+- Use `..` to type spaces in string arguments _(a better solution is in work)_
 - Use `#` to comment out the line from this point
 
 Example:
@@ -67,7 +67,7 @@ something.
 ###### Comparison
 
 Tkinter:
-```
+```python
 frame1 = Frame(root, bg = "white")     
 frame1.pack(padx = 5, pady = 5, expand = True, fill = BOTH)   
 

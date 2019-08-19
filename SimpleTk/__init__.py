@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-
+import os.path
 
 class SimpleTk:
     def __init__(self, root, file="gui.stk"):
@@ -46,9 +46,9 @@ class SimpleTk:
                 exec(f"{i} = {self.parents[i]}(root)")
 
             if self.parents[i] in list(self.styles.keys()):
-                exec(f'{i}.config({self.styles[self.parents[i]]})')
+                exec(f'{i}.config({" ".join(self.styles[self.parents[i]]).split("..")})')
 
-            exec(f'{i}.config({self.properties[i].split(",parent")[0]})')
+            exec(f'{i}.config({" ".join(self.properties[i].split(",parent")[0].split(".."))})')
 
             try:
                 if parent_cols == 0:
@@ -64,3 +64,17 @@ class SimpleTk:
 
             exec(f"self.{i} = {i}")
             root.update()
+
+if not os.path.isfile("gui.stk"):
+    with open("gui.stk", "w") as f:
+        f.write("""# SimpleTk GUI-File
+# Take a look at https://pypi.org/project/simpleTk/ to learn about the syntax
+
+Frame: fr1(bg = "white")
+\tLabelFrame: lf1(text = "SimpleTk")
+\t\tLabel: l1(text = "My..first..SimpleTk..GUI", bg = "white")
+\tLabelFrame: lf2(text = "This..is..a..LabelFrame"){2}
+\t\tButton: b1(text = "This..is..a..Button", bg = "gold")
+\t\tEntry: e1()
+\t\tttk.Combobox: cb1(state = "readonly", values = ["This", "is", "a", "ComboBox"])
+\t\tLabel: l2(text = "ttk..is..also..supported", fg = "red")""")
