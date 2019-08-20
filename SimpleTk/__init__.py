@@ -50,7 +50,7 @@ class SimpleTk:
                 exec(f"{i} = {self.parents[i]}(root)")
 
             if self.parents[i] in list(self.styles.keys()):
-                exec(f'{i}.config({" ".join(self.styles[self.parents[i]]).split("..")})')
+                exec(f'{i}.config({" ".join(self.styles[self.parents[i]].split(".."))})')
 
             exec(f'{i}.config({" ".join(self.properties[i].split(",parent")[0].split(".."))})')
 
